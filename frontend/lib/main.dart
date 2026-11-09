@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+// Import developed functional screens
 import 'screens/login_screen.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/report_screen.dart';
@@ -6,8 +9,21 @@ import 'screens/guardian_screen.dart';
 import 'screens/leaderboard_screen.dart';
 import 'screens/audio_player_screen.dart';
 
+// Import state injection services providers
+import 'services/auth_provider.dart';
+import 'services/progress_provider.dart';
+
 void main() {
-  runApp(const NoorEHifzApp());
+  runApp(
+    // Inject MultiProvider framework structure at absolute root node level
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => ProgressProvider()),
+      ],
+      child: const NoorEHifzApp(),
+    ),
+  );
 }
 
 class NoorEHifzApp extends StatelessWidget {
