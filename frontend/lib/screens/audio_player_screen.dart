@@ -7,7 +7,7 @@ class TajweedAudioPlayerScreen extends StatefulWidget {
   _TajweedAudioPlayerScreenState createState() => _TajweedAudioPlayerScreenState();
 }
 
-class _StudentAudioPlayerScreenState extends State<TajweedAudioPlayerScreen> {
+class _TajweedAudioPlayerScreenState extends State<TajweedAudioPlayerScreen> {
   bool _isPlaying = false;
   double _sliderValue = 12.0; // Simulated current playback position in seconds
   final double _totalDuration = 45.0; // Simulated total recording time in seconds
@@ -177,7 +177,6 @@ class _StudentAudioPlayerScreenState extends State<TajweedAudioPlayerScreen> {
     );
   }
 
-  // Internal Helper Custom Component for rendering shortcut rows easily
   Widget _buildTimestampErrorItem({required String timeLabel, required String errorContext, required VoidCallback onTap}) {
     return Container(
       decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), border: Border.all(color: Colors.grey.shade100)),
