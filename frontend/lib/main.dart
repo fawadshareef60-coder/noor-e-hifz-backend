@@ -4,6 +4,7 @@ import 'screens/dashboard_screen.dart';
 import 'screens/report_screen.dart';
 import 'screens/guardian_screen.dart';
 import 'screens/leaderboard_screen.dart';
+import 'screens/audio_player_screen.dart';
 
 void main() {
   runApp(const NoorEHifzApp());
@@ -34,6 +35,7 @@ class NoorEHifzApp extends StatelessWidget {
         '/report': (context) => const AIReportScreen(),
         '/guardian': (context) => const GuardianDashboardScreen(),
         '/leaderboard': (context) => const HifzLeaderboardScreen(),
+        '/audio-review': (context) => const TajweedAudioPlayerScreen(),
       },
     );
   }
