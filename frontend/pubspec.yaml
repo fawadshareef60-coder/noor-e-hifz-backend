@@ -1,0 +1,32 @@
+name: noor_e_hifz_app
+description: "AI-Powered Digital Madrasa System for Advanced Hifz & Tajweed Tracking Mobile Application UI."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Centralized API network request caller driver library
+  http: ^0.13.5
+
+  # Dynamic State Management Architecture for user memory token caching
+  provider: ^6.0.5
+
+  # Cupertino package tracking standard clean layout sets icons vectors
+  cupertino_icons: ^1.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+
+  # Asset management directories path mapping simulator configuration keys
+  # Future extensions link offline local icons and audio packages here
