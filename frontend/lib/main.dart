@@ -3,6 +3,7 @@ import 'screens/login_screen.dart';
 import 'screens/dashboard_screen.dart';
 import 'screens/report_screen.dart';
 import 'screens/guardian_screen.dart';
+import 'screens/leaderboard_screen.dart';
 
 void main() {
   runApp(const NoorEHifzApp());
@@ -32,6 +33,7 @@ class NoorEHifzApp extends StatelessWidget {
         '/dashboard': (context) => const StudentDashboardScreen(),
         '/report': (context) => const AIReportScreen(),
         '/guardian': (context) => const GuardianDashboardScreen(),
+        '/leaderboard': (context) => const HifzLeaderboardScreen(),
       },
     );
   }
