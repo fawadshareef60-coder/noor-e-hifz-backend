@@ -4,6 +4,7 @@ from typing import List
 from app.database import get_db
 from app.models_support import Guardian, Notification, AuditLog
 from app.auth import get_current_user
+from app.notification_engine import madrasa_alerts_engine
 
 router = APIRouter(
     prefix="/support",
@@ -41,13 +42,18 @@ def connect_guardian_profile(
     return {"message": "Parent/Guardian connection successfully configure ho gaya hai."}
 
 # ==========================================
-# 2. FETCH UNREAD NOTIFICATIONS / ALERTS
+# 2. FETCH UNREAD NOTIFICATIONS WITH AUTO REMINDER
 # ==========================================
 @router.get("/notifications/unread", response_model=List[dict])
 def get_unread_notifications(db: Session = Depends(get_db), current_user: dict = Depends(get_current_user)):
     """
-    Student ya Admin dashboard ke liye real-time unread sabaq reminders aur revision alerts laata hai.
+    Student dashboard ke liye real-time unread alerts aur automatic sabaq missing logs reminders generated laata hai.
     """
+    # 1. Automatic trigger verification logic run recursively check for pending sabaq targets
+    if current_user["role"] == "student":
+        madrasa_alerts_engine.check_and_trigger_sabaq_reminders(db=db, student_id=current_user["id"])
+
+    # 2. Query updated notifications records registry map from postgres
     notifications = db.query(Notification).filter(
         Notification.user_id == current_user["id"],
         Notification.is_read == False
@@ -74,7 +80,7 @@ def trigger_security_audit_log(
     current_user: dict = Depends(get_current_user)
 ):
     """
-    System ke sensitive actions (jaise password change ya settings alteration) ko secure IP logs ke sath audit trail mein record karta hai.
+    System ke sensitive actions ko secure IP logs ke sath audit trail mein record karta hai.
     """
     client_ip = request.client.host if request.client else "Unknown IP"
     
